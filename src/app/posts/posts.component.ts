@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as  PostActions from '../store/post.action';
-import { Observable } from 'rxjs';
 import { currentPostId, selectPosts } from '../store/post.selector';
 import { CardComponent } from '../components/card/card.component';
+import { Post } from '../interface/post.type';
 
 @Component({
   selector: 'app-posts',
@@ -16,50 +16,26 @@ import { CardComponent } from '../components/card/card.component';
 })
 export class PostsComponent implements OnInit {
   httpClient = inject(HttpClient);
-  postData: any = []; //TODO change type
-  activeCardIndex: number | null = null;
-  cardKeyArry = ["userId", "id", "title", "body"];
+  postData: Post[] = []; 
   selectedCardId: number = 0;
+  activeCardIndex: number | null = null;
 
 
-  constructor(private store: Store<{ posts: any}>) {
+  constructor(private store: Store<{ posts: Post[] }>) {
   }
 
 
   ngOnInit(): void {
-   this.fetchPosts();
-   this.store.pipe(select(selectPosts)).subscribe(data=>{
-    this.postData = data
-  })
-
-
-  this.store.pipe(select(currentPostId)).subscribe(selectedCard=>{
-     this.selectedCardId = selectedCard?.id;
-  })
-
+    this.fetchPosts();
+    this.store.pipe(select(selectPosts)).subscribe(data => {
+      this.postData = data
+    })
+    this.store.pipe(select(currentPostId)).subscribe(selectedCard => {
+      this.selectedCardId = selectedCard?.id;
+    })
   }
 
-  setActiveCard(index: number, card: any): void { // TODO CHANGE TYPE
-    // console.log(this.store, 'this.store');
-    // card.displayNumber = index+1;
-    // card.displayValue = card?.cardKeyArry[card.displayNumber];
-
-    // DISPATCH displayNumber here
-     // DISPATCH displayValue here
-
-    this.activeCardIndex = index;
+  fetchPosts() {
+    this.store.dispatch(PostActions.requestPost());
   }
-  
-  fetchPosts(){
-     this.store.dispatch(PostActions.requestPost());
-    // this.httpClient.get('https://jsonplaceholder.typicode.com/posts').subscribe((data)=>{
-    //   this.postData = data;
-    //   console.log(this.postData);
-    // })
-  }
-
-  // onCardUpdateEvent(eventData: { cardId: number }){
-  //   console.log(eventData.cardId);
-  //   // this.selectedCardId = eventData.cardId;
-  // }
 }

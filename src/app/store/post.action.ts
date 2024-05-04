@@ -15,6 +15,3 @@ export const setCurrentSelectedPost = createAction(
    props<{ post:any }>()  // TODO change type
  );
 
-
-
-

@@ -7,7 +7,9 @@ import { Injectable } from "@angular/core";
 export class PostService {
   constructor (private http: HttpClient) {}
 
+  BASE_URL = 'https://jsonplaceholder.typicode.com';
+
   getCards() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+    return this.http.get(`${this.BASE_URL}/posts`);  // Todo 
   }
 }
