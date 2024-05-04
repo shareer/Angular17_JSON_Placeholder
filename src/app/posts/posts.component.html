@@ -1,8 +1,10 @@
-<p>posts works!</p>
-<div class="grid-container">
-  <div class="card" *ngFor="let card of postData; let i = index" 
-       [class.active]="i === activeCardIndex"
-       (click)="setActiveCard(i)">
-    <span>{{ card.title }}</span>
+<div class="container">
+  <div class="selected-card">
+    <h3 *ngIf="selectedCardId">Active Post ID : {{selectedCardId}}</h3>
+  </div>
+  <div class="grid-container">
+    <div *ngFor="let card of postData; let i = index">
+      <app-card [post]="card" selectedCardId="{{selectedCardId}}"></app-card>
+    </div>
   </div>
 </div>

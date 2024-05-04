@@ -1,0 +1,17 @@
+
+   <div class="card orange" [ngClass]="{'selected': isCardSelected()}" (click)="onSelectCard(post)" [@cardFlip]="cardState">
+        <span><h3 style="padding:0;margin: 0;">{{currentDisplayType}}</h3> {{displayValue}}</span>
+    </div>
+
+
+
+    <!-- <div class="card-container orange" (click)="onSelectCard(post)">
+        <div class="card" [@cardFlip]="data.state">
+         
+          <div class="card-content">
+            {{currentDisplayType}} <span>{{displayValue}}</span>
+          </div>
+        </div>
+      </div> -->
+      
+    
