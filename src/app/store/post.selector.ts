@@ -6,12 +6,12 @@ export const getPostState = createFeatureSelector<PostFeatureState>('posts');
 
 export const selectPosts = createSelector(
   getPostState,
-  (state: PostFeatureState) => state.posts
+  (state: PostFeatureState) => state?.posts
 );
 
 export const selectPostState = (state: PostFeatureState) => state;
 
 export const currentPostId = createSelector(
   getPostState,
-  (state: PostFeatureState) => state.currentSelected
+  (state: PostFeatureState) => state?.currentSelected
 );

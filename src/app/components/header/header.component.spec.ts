@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +9,8 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderComponent]
+      imports: [HeaderComponent],
+      providers: [provideMockStore({})],
     })
     .compileComponents();
     
@@ -19,5 +21,19 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display "No Card Selected" when selectedCardId is null', () => {
+    component.selectedCardId = null;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('No Card Selected');
+  });
+
+  it('should display "Current Active Card ID: 1" when selectedCardId is 1', () => {
+    component.selectedCardId = 1;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toMatch(/Current Active Card ID\s*:\s*1/);
   });
 });
