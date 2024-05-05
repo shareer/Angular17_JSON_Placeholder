@@ -1,17 +1,19 @@
 import { createReducer, on } from "@ngrx/store";
 import * as  PostActions from './post.action'
+import { Post, PostFeatureState } from "../interface/post.type";
 
-export const initialState = {   // Todo type
+
+export const initialState: PostFeatureState = { 
   posts: [],
-  currentSelected:undefined
+  currentSelected:null
 };
 
 export const postsReducer = createReducer(
   initialState,
-  on(PostActions.recievetPost, (state, { post}) => {
+  on(PostActions.receivePosts, (state, { posts}) => {
     return {
         ...state,
-        posts:post
+        posts: [...posts]
     }
   }),
 

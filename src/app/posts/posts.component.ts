@@ -1,6 +1,5 @@
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as  PostActions from '../store/post.action';
 import { currentPostId, selectPosts } from '../store/post.selector';
@@ -15,18 +14,17 @@ import { Post } from '../interface/post.type';
   styleUrl: './posts.component.css'
 })
 export class PostsComponent implements OnInit {
-  httpClient = inject(HttpClient);
-  postData: Post[] = []; 
-  selectedCardId: number = 0;
+  postData: Post[] = [];
+  selectedCardId: number | null | undefined = 0; 
   activeCardIndex: number | null = null;
+  shouldShowScrollToTopButton: boolean = false;
 
 
   constructor(private store: Store<{ posts: Post[] }>) {
   }
 
-
   ngOnInit(): void {
-    this.fetchPosts();
+    this.getPosts();
     this.store.pipe(select(selectPosts)).subscribe(data => {
       this.postData = data
     })
@@ -35,7 +33,18 @@ export class PostsComponent implements OnInit {
     })
   }
 
-  fetchPosts() {
-    this.store.dispatch(PostActions.requestPost());
+  // Scroll to top when the button is clicked
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const yOffset = window.pageYOffset;
+    this.shouldShowScrollToTopButton = yOffset > 200; // Adjust the threshold as needed
+  }
+
+  getPosts() {
+    this.store.dispatch(PostActions.fetchPosts());
   }
 }

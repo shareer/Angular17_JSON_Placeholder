@@ -13,8 +13,9 @@
     padding: 10px 0;
     text-align: center;
     box-shadow: 0px 20px 40px -20px hsl(229, 6%, 66%);
-    background-color: #FDD835;
+    background-color: #FFFDE7;
     transition: transform 0.3s ease;
+    line-height: 18px;
 }
 
 .front,
@@ -35,6 +36,7 @@
 
 .card span {
     display: block;
+    line-height: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 125px;
@@ -44,8 +46,8 @@
     background: linear-gradient(to bottom, #FDD835 70%, hsl(34, 97%, 64%) 100%);
     cursor: pointer;
     border-radius: 5px;
-    transform: scale(1.05); /* Enlarge the card by 5% on hover */
-    transition: transform 0.3s ease; /* Add a smooth transition effect */
+    transform: scale(1.05); 
+    transition: transform 0.3s ease; 
 }
 
 .orange {
@@ -54,8 +56,7 @@
 
 
 .selected {
-    background: linear-gradient(to top, #FDD835, hsl(34, 97%, 64%));;
-    border: 1px solid #000;
+    background: linear-gradient(to top, #FDD835, hsl(34, 97%, 64%));
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
 }
@@ -64,6 +65,8 @@
     padding: 0 10px;
     margin: 0;
     text-align: center;
+    text-transform: capitalize;
+    font-weight: 400;
 }
 
 .display-value {

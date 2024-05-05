@@ -28,6 +28,35 @@
   margin: 0;
 }
 
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #202020;
+    opacity: 0.6;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999; 
+    cursor: pointer;
+  }
+
+  .arrow{
+    font-size: 23px;
+    position: absolute;
+    top: 5px;
+    left: 14px;
+  }
+
+  .scroll-to-top:hover{
+    opacity: 1;
+  }
+  
+
 @media screen and (max-width: 1200px) {
     .grid-container {
         grid-template-columns: repeat(8, minmax(0, 1fr)); /* Adjust for smaller screens */

@@ -1,7 +1,7 @@
-<div class="card-container" (click)="onSelectCard(post)">
+<div class="card-container" (click)="handleCardSelection(post)">
     <div class="card orange" [ngClass]="{'selected': isCardSelected()}" [@cardFlip]="cardState">
       <div *ngFor="let face of ['front', 'back']" [class]="face">
-        <h3 class="heading">{{currentDisplayType}}</h3>
+        <h3 class="heading">{{displayKey}}</h3>
         <span class="display-value" title={{displayValue}}>{{displayValue}}</span> 
       </div>
     </div>

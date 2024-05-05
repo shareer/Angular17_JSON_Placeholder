@@ -1,17 +1,17 @@
 import { createAction, props } from '@ngrx/store';
+import { Post } from '../interface/post.type';
 
-export const requestPost = createAction(
-  '[Post] GET'
+export const fetchPosts = createAction(
+  '[Post] Fetch Posts'
 );
 
-export const recievetPost = createAction(
- '[Post] Recieve',
-  props<{ post:any }>()  // TODO change type
+export const receivePosts = createAction(
+  '[Post] Receive Posts',
+  props<{ posts: Post[] }>()
 );
-
 
 export const setCurrentSelectedPost = createAction(
-  '[SET CURRENT POST] Recieve',
-   props<{ post:any }>()  // TODO change type
- );
+  '[Post] Set Current Selected Post',
+  props<{ post: Post }>()
+);
 

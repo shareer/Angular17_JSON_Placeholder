@@ -43,88 +43,50 @@ export class CardComponent {
     userId: null,
     body: "",
     title: ""
-};  
-  @Input() selectedCardId: number = 0; 
+  };
+  @Input() selectedCardId: number | null | undefined = 0;
   displayValue: string | number | null = null;
-  currentDisplayType: string = 'title';
+  displayKey: string = 'title';
   cardState: "default" | "flipped" = 'default';
-  curIndex = 0;
-
+  currentIndex = 0;
 
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.displayValue = this.post.title;
-
-    this.store.pipe(select(currentPostId)).subscribe(selectedCard=>{
-      if(selectedCard?.id  != this.post.id){
+    this.displayValue = this.post.title; // set title as default display value
+    this.store.pipe(select(currentPostId)).subscribe(selectedCard => {
+      if (selectedCard?.id != this.post.id) {
         this.displayValue = this.post.title;
-        this.curIndex = 0;
-        this.currentDisplayType = 'title';
+        this.currentIndex = 0;
+        this.displayKey = 'title';
       }
-   })
+    })
   }
-
 
   isCardSelected(): boolean {
-    return this.selectedCardId == this.post.id;
+    return this.selectedCardId === this.post.id;
   }
 
-  onSelectCard(post:Post) {
+  /**
+   * Handles the selection of a card and updates the display and state accordingly.
+   * 
+   * @param post The post object associated with the selected card.
+   */
+  handleCardSelection(post: Post) {
+    //Extracts the keys of the post object excluding 'title', and appends 'title' to the array.
     let postValues = Object.keys(post).filter(key => key !== 'title').concat('title');
-    const curProperty = postValues[this.curIndex];
-    this.displayValue = post[curProperty as keyof Post];
-    this.currentDisplayType = curProperty;
+    const currentProperty = postValues[this.currentIndex];
+    this.displayValue = post[currentProperty as keyof Post];
+    this.displayKey = currentProperty;
 
-    // move to next
-    this.curIndex = (this.curIndex + 1) < postValues.length ? this.curIndex + 1 : 0;
+    // move to the next property of loops back to the beginning if end is reached
+    this.currentIndex = (this.currentIndex + 1) < postValues.length ? this.currentIndex + 1 : 0;
 
-    //update store
-    this.store.dispatch(setCurrentSelectedPost({ post: post }));
-
-    if (this.cardState === "default") {
-      this.cardState = "flipped";
-    } else {
-      this.cardState = "default";
+    // update store only is a new card is clicked
+    if (post.id !== this.selectedCardId) {
+      this.store.dispatch(setCurrentSelectedPost({ post }));
     }
+    // Toggle the state of the card
+    this.cardState = this.cardState === "default" ? "flipped" : "default";
   }
-
-  // onSelectCard(post: any) {
-  //   if (this.cardState === "default") {
-  //     this.cardState = "flipped";
-  //   } else {
-  //     this.cardState = "default";
-  //   }
-  //   if (this.selectedCardId != post.id) {
-  //     console.log("dispatch nowww");
-
-  //     this.store.dispatch(setCurrentSelectedPost({ post: post }));
-  //   }
-
-  //   console.log("active card id from store is :: " + this.selectedCardId)
-  //   console.log("clicked card id is :: " + post.id)
-
-  //   switch (this.currentDisplayType) {
-  //     case 'title':
-  //       this.displayValue = post.userId;
-  //       this.currentDisplayType = 'userId';
-  //       break;
-  //     case 'userId':
-  //       this.displayValue = post.id;
-  //       this.currentDisplayType = 'id';
-  //       break;
-  //     case 'id':
-  //       this.displayValue = post.body;
-  //       this.currentDisplayType = 'body';
-  //       break;
-  //     case 'body':
-  //       this.displayValue = post.title;
-  //       this.currentDisplayType = 'title';
-  //       break;
-  //     default:
-  //       this.displayValue = post.title;
-  //       this.currentDisplayType = 'title';
-  //       break;
-  //   }
-  // }
 }

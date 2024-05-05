@@ -1,12 +1,4 @@
 <div class="container">
-  <!-- <div class="selected-card">
-    @if(selectedCardId) {
-    <h3>Current Active Card ID : {{ selectedCardId }}</h3>
-    } @else {
-    <h3>No Card Selected</h3>
-    }
-  </div> -->
-
   <div class="grid-container">
     @for (card of postData; track card) {
     <app-card [post]="card" [selectedCardId]="selectedCardId"></app-card>
@@ -14,4 +6,7 @@
     <div class="no-card">Cards Loading...</div>
     }
   </div>
+  <button class="scroll-to-top" (click)="scrollToTop()" *ngIf="shouldShowScrollToTopButton">
+    <span class="arrow">&#8593;</span>
+  </button>
 </div>

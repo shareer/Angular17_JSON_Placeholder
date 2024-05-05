@@ -4,7 +4,8 @@ body{
     
 }
 html, body {
-    font-family: 'Muli';
+    /* font-family: 'Muli'; */
+    font-family: "Open Sans", sans-serif;
     padding: 0;
     margin: 0;
 }

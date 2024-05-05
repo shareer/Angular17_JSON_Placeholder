@@ -11,12 +11,12 @@ import { currentPostId } from '../../store/post.selector';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  selectedCardId: number = 0;
+  selectedCardId: number | null | undefined = null;
   constructor(private store: Store<{ posts: Post[] }>) {
   }
   ngOnInit(): void {
     this.store.pipe(select(currentPostId)).subscribe(selectedCard => {
-      this.selectedCardId = selectedCard?.id;
+      this.selectedCardId = selectedCard?.id; 
     })
   }
 }
