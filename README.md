@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6. This application lists the post from [JSON Placeholder API](https://jsonplaceholder.typicode.com). When the user clicks on a post, the application iterates through the post data, displaying each item such as user ID, title, body, and ID one by one with each click.
 
+## Project is live and deployed in Vercel
+
+https://angular17-json-placeholder.vercel.app/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -32,11 +36,11 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 
-### 1. Question 1
+### Question 1
 
 Using JWTs is safe since they are cryptographically signed to prevent tampering. At the same time, it's important that they are properly implemented and stored securely. It's also crucial to protect them from unauthorized access and use HTTPS to prevent interception during transmission. JWTs will be a single string issued by the server after authentication, which contains a header, payload, and signature.
 
-### 1. Question 2
+### Question 2
 
 The two common attack vectors in this case could be Cross-Site Scripting(XSS) and HTML Injection.
 
@@ -44,7 +48,7 @@ In case of XSS malicious scripts are injected into the application, potentially 
 
 To prevent this we could consider implementing Content Security Policy (CSP), Sanitize Input, Encode output and also educating users about avoiding clicking on links from untrusted sources.
 
-### 1. Question 3
+### Question 3
 
 The key difference between mutable and immutable objects are immutable objects cannot change their state once created, while mutable objects are objects whose properties or values can be changed after creation.
 
@@ -96,7 +100,7 @@ The key difference between mutable and immutable objects are immutable objects c
                 const arr2 = arr1.map(item => item * 2); // Returns a new array with each item doubled
                 
 
-### 1. Question 4
+### Question 4
 
 Below are the few steps to speeding up the loading timeof a web application. This is common steps i would follow regardless of the Frameworks/Library
 
@@ -116,7 +120,7 @@ Below are the few steps to speeding up the loading timeof a web application. Thi
 
 
 
-### 1. Question 5
+### Question 5
 
 For me, having both good hardware and software is important for a better work experience. However, if I had to choose between the two, I would prefer to have a standard piece of average hardware but the freedom to choose my own software.
 
