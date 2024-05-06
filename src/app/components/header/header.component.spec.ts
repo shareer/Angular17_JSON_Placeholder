@@ -23,17 +23,17 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display "No Card Selected" when selectedCardId is null', () => {
+  it('should display "No Post Selected" when selectedCardId is null', () => {
     component.selectedCardId = null;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('No Card Selected');
+    expect(compiled.querySelector('h2').textContent).toContain('No Post Selected');
   });
 
-  it('should display "Current Active Card ID: 1" when selectedCardId is 1', () => {
+  it('should display "Current Active Post ID: 1" when selectedCardId is 1', () => {
     component.selectedCardId = 1;
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toMatch(/Current Active Card ID\s*:\s*1/);
+    expect(compiled.querySelector('h2').textContent).toMatch(/Current Active Post ID\s*:\s*1/);
   });
 });

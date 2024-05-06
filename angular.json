@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "zivver": {
+    "json_placeholder_post": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/zivver",
+            "outputPath": "dist/json_placeholder_post",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -57,10 +57,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "zivver:build:production"
+              "buildTarget": "json_placeholder_post:build:production"
             },
             "development": {
-              "buildTarget": "zivver:build:development"
+              "buildTarget": "json_placeholder_post:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +68,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "zivver:build"
+            "buildTarget": "json_placeholder_post:build"
           }
         },
         "test": {
