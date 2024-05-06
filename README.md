@@ -38,7 +38,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ### Question 1
 
-Using JWTs is safe since they are cryptographically signed to prevent tampering. At the same time, it's important that they are properly implemented and stored securely. It's also crucial to protect them from unauthorized access and use HTTPS to prevent interception during transmission. JWTs will be a single string issued by the server after authentication, which contains a header, payload, and signature.
+I examined the JWT shared and it does follows the standard JWT format of having the header, payload and signature. Using JWTs are safe since they are cryptographically signed to prevent tampering. At the same time, it's important that they are properly implemented and stored securely. It's also crucial to protect them from unauthorized access and use HTTPS to prevent interception during transmission. JWTs will be a single string issued by the server after authentication, which contains a header, payload, and signature.
 
 ### Question 2
 
@@ -56,7 +56,7 @@ The key difference between mutable and immutable objects are immutable objects c
 
         
         const greeting = "Hello!";
-        const newGreeting = str.toUpperCase();
+        const newGreeting = greeting.toUpperCase();
 
 
     In the above case 'greeting' is an immutable object (a string). Once created, its value cannot be changed. the 'newGreeting' does not modify the original 'greeting', instead, it returns a new string with all characters converted to uppercase. The original 'greeting' remains unchanged.
